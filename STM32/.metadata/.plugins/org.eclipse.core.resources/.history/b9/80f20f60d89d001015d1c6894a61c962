@@ -193,14 +193,14 @@ void update7SEG(int index){
 const int MAX_LED_MATRIX = 8;
 int index_led_matrix = 0;
 uint8_t matrix_buffer [8] = {
-	0x00,
-	0x7C,
-	0x12,
-	0x11,
-	0x11,
-	0x12,
-	0x7C,
-	0x00
+	0x01,     //
+	0x02,     //
+	0x03,     //
+	0x04,     //
+	0x05,     //
+	0x06,     //
+	0x07,     //
+	0x08      //
 };
 
 void updateLEDMatrix(int index){
@@ -252,7 +252,6 @@ void updateLEDMatrix(int index){
 			break;
 	}
 }
-
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	timer1Run();
 	timer2Run();
@@ -301,7 +300,6 @@ int main(void)
   setTimer1(1000);
   setTimer2(250);
   setTimer3(50);
-  setTimer4(20);
   while (1) {
 	  if (timer1_flag == 1) {
 		  HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin);
@@ -331,12 +329,6 @@ int main(void)
 		  update7SEG(index_led++);
 		  if (index_led > 3) index_led = 0;
 		  setTimer2(250);
-	  }
-
-	  if (timer4_flag == 1) {
-		  updateLEDMatrix(index_led_matrix++);
-		  if (index_led_matrix >= MAX_LED_MATRIX) index_led_matrix = 0;
-		  setTimer4(25);
 	  }
     /* USER CODE END WHILE */
 

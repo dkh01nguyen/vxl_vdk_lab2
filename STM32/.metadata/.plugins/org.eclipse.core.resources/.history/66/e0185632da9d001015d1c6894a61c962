@@ -193,14 +193,14 @@ void update7SEG(int index){
 const int MAX_LED_MATRIX = 8;
 int index_led_matrix = 0;
 uint8_t matrix_buffer [8] = {
-	0x00,
-	0x7C,
-	0x12,
-	0x11,
-	0x11,
-	0x12,
-	0x7C,
-	0x00
+	0x01,     //
+	0x02,     //
+	0x03,     //
+	0x04,     //
+	0x05,     //
+	0x06,     //
+	0x07,     //
+	0x08      //
 };
 
 void updateLEDMatrix(int index){
@@ -336,7 +336,7 @@ int main(void)
 	  if (timer4_flag == 1) {
 		  updateLEDMatrix(index_led_matrix++);
 		  if (index_led_matrix >= MAX_LED_MATRIX) index_led_matrix = 0;
-		  setTimer4(25);
+		  setTimer4(20);
 	  }
     /* USER CODE END WHILE */
 
