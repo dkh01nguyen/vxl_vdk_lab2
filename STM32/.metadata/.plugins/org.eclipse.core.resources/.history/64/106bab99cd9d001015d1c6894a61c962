@@ -90,7 +90,7 @@ void display7seg(int num){
 
 int index_led = 0;
 int led_buffer[4];
-int hour = 15, minute = 8, second = 50;
+int hour = 0, minute = 0, second = 0;
 
 void setTimer1(int duration) {
 	timer1_flag = 0;

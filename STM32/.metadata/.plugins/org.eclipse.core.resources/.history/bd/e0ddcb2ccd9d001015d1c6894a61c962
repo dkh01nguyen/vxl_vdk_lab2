@@ -90,7 +90,7 @@ void display7seg(int num){
 
 int index_led = 0;
 int led_buffer[4];
-int hour = 15, minute = 8, second = 50;
+int hour = 0, minute = 0, second = 0;
 
 void setTimer1(int duration) {
 	timer1_flag = 0;
@@ -125,7 +125,7 @@ void timer2Run() {
 	}
 }
 
-void timer3Run() {
+void timer2Run() {
 	if (timer3 > 0) {
 		timer3--;
 		if (timer3 == 0) {
@@ -175,13 +175,6 @@ void update7SEG(int index){
 			break;
 	}
 }
-
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-	timer1Run();
-	timer2Run();
-	timer3Run();
-}
-
 /* USER CODE END 0 */
 
 /**
@@ -222,14 +215,13 @@ int main(void)
   // timer1 for blinking dots and time update, timer2 for LEDs time display
   setTimer1(1000);
   setTimer2(250);
-  setTimer3(50);
+  setTimer3(500);
   while (1) {
 	  if (timer1_flag == 1) {
 		  HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin);
 		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 		  setTimer1(1000);
 	  }
-
 	  if (timer3_flag == 1) {
 			second++;
 			if (second >= 60) {
@@ -245,7 +237,7 @@ int main(void)
 			  hour = 0;
 			}
 			updateClockBuffer();
-			setTimer3(50);
+			setTimer3(500);
 	  }
 
 	  if (timer2_flag == 1) {
@@ -381,7 +373,10 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+	timer1Run();
+	timer2Run();
+}
 /* USER CODE END 4 */
 
 /**
