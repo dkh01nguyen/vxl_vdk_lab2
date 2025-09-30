@@ -120,8 +120,8 @@ int counter = 0;
 int counter_flag = 0;
 #define TIME_CYCLE 10
 
-void set(int duration) {
-	counter_flag = 0;
+void set(int duration, int flag) {
+	flag = 0;
 	counter = duration / TIME_CYCLE;
 }
 
@@ -167,7 +167,7 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
-  set(1000);
+  set(1000, counter_flag);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -180,7 +180,7 @@ int main(void)
 		 update7SEG(index_led++);
 		 HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 		 HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin);
-		 set(1000);
+		 set(1000, counter_flag);
 	 }
     /* USER CODE BEGIN 3 */
   }
