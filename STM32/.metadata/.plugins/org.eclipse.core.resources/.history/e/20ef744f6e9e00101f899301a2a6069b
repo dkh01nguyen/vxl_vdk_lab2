@@ -292,7 +292,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	timer2Run();
 	timer3Run();
 	timer4Run();
-	timer5Run();
+	tỉmer5Run();
 }
 
 /* USER CODE END 0 */
