@@ -193,14 +193,14 @@ void update7SEG(int index){
 const int MAX_LED_MATRIX = 8;
 int index_led_matrix = 0;
 uint8_t matrix_buffer [8] = {
-		 0x00,  // Column 0: 00000000
-		    0x0C,  // Column 1: 00001100
-		    0x1E,  // Column 2: 00011110
-		    0x3C,  // Column 3: 00111100
-		    0x1E,  // Column 4: 00011110
-		    0x0C,  // Column 5: 00001100
-		    0x00,  // Column 6: 00000000
-		    0x00   // Column 7: 00000000
+	0x00,
+	0x7C,
+	0x12,
+	0x11,
+	0x11,
+	0x12,
+	0x7C,
+	0x00
 };
 
 void updateLEDMatrix(int index){
@@ -297,11 +297,11 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  // timer1 for blinking dots and time update, timer2 for LEDs time display, timer3 for counting time, timer4 for matrix display
+  // timer1 for blinking dots and time update, timer2 for LEDs time display
   setTimer1(1000);
   setTimer2(250);
   setTimer3(50);
-  setTimer4(500);
+  setTimer4(20);
   while (1) {
 	  if (timer1_flag == 1) {
 		  HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin);
@@ -336,7 +336,7 @@ int main(void)
 	  if (timer4_flag == 1) {
 		  updateLEDMatrix(index_led_matrix++);
 		  if (index_led_matrix >= MAX_LED_MATRIX) index_led_matrix = 0;
-		  setTimer4(500);
+		  setTimer4(25);
 	  }
     /* USER CODE END WHILE */
 
