@@ -19,7 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "software_timer.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -56,6 +56,7 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+#define TIME_CYCLE 10
 
 uint8_t table[10] = {
     0b1000000, // 0
@@ -124,6 +125,17 @@ void update7SEG(int index){
 
 const int MAX_LED_MATRIX = 8;
 int index_led_matrix = 0;
+/*uint8_t matrix_buffer [8] = {
+		0xFF,  // Column 0: 11111111
+		0xF3,  // Column 1: 11110011
+		0xE1,  // Column 2: 11100001
+		0xC3,  // Column 3: 11000011
+		0xE1,  // Column 4: 11100001
+		0xF3,  // Column 5: 11110011
+		0xFF,  // Column 6: 11111111
+		0xFF   // Column 7: 11111111
+};
+*/
 uint8_t matrix_buffer[8] = {
 	0xFF,  // Column 0: 11111111  (********)
 	0x83,  // Column 1: 10000011  (*     **)
@@ -193,7 +205,11 @@ void moveAnimation(){
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-	timerRun();
+	timer1Run();
+	timer2Run();
+	timer3Run();
+	timer4Run();
+	timer5Run();
 }
 
 /* USER CODE END 0 */

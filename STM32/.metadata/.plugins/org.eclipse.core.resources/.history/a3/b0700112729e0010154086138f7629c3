@@ -1,0 +1,78 @@
+/*
+ * software_timer.c
+ *
+ *  Created on: 1 Oct 2025
+ *      Author: User
+ */
+#include "software_timer.h"
+
+int timer1_flag = 0;
+int timer2_flag = 0;
+int timer3_flag = 0;
+int timer4_flag = 0;
+int timer5_flag = 0;
+
+//counter
+int timer1 = 0;
+int timer2 = 0;
+int timer3 = 0;
+int timer4 = 0;
+int timer5 = 0;
+
+void setTimer1(int duration) {
+	timer1_flag = 0;
+	timer1 = duration / TIME_CYCLE;
+}
+
+void setTimer2(int duration) {
+	timer2_flag = 0;
+	timer2 = duration / TIME_CYCLE;
+}
+
+void setTimer3(int duration) {
+	timer3_flag = 0;
+	timer3 = duration / TIME_CYCLE;
+}
+
+void setTimer4(int duration) {
+	timer4_flag = 0;
+	timer4 = duration / TIME_CYCLE;
+}
+
+void setTimer5(int duration) {
+	timer5_flag = 0;
+	timer5 = duration / TIME_CYCLE;
+}
+
+void timerRun() {
+	if (timer1 > 0) {
+		timer1--;
+		if (timer1 == 0) {
+			timer1_flag = 1;
+		}
+	}
+	if (timer2 > 0) {
+		timer2--;
+		if (timer2 == 0) {
+			timer2_flag = 1;
+		}
+	}
+	if (timer3 > 0) {
+		timer3--;
+		if (timer3 == 0) {
+			timer3_flag = 1;
+		}
+	}
+	if (timer4 > 0) {
+		timer4--;
+		if (timer4 == 0) {
+			timer4_flag = 1;
+		}
+	}
+	if (timer5 > 0) {
+		timer5--;
+		if (timer5 == 0) {
+			timer5_flag = 1;
+		}
+	}
+}
